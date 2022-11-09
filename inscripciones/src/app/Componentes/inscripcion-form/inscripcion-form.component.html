@@ -1,0 +1,91 @@
+<section class="vh-200 gradient-custom">
+    <div class="container py-2 h-200">
+        <div class="row d-flex justify-content-center align-items-center h-200">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-10">
+                <div class="container bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="container-body p-4 text-center">
+
+                        <div class="mb-md-2 mt-md-1 pb-2">
+
+                            <h2 class="fw-bold mb-5+2 text-uppercase">Registro Usuario</h2>
+                            <form [formGroup]="Mesas" (ngSubmit)="Imesas()">
+                                <div class="form-outline form-white mb-4">
+                                    <label class="form-label" for="typeEmailX">Cuil</label>
+                                    <input type="text" id="typeEmailX" class="form-control form-control-lg" formControlName="cuil" />
+                                    <div class="text-danger">
+                                        <span>El cuil <strong>es obligatorio</strong></span>
+                                    </div>
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <label class="form-label" for="typeEmailX">Nombre</label>
+                                    <input type="text" id="typeEmailX" class="form-control form-control-lg" formControlName="nombre" />
+                                    <div class="text-danger">
+                                        <span>El Nombre <strong>es obligatorio</strong></span>
+                                    </div>
+                                </div>
+                                <div class="form-outline form mb-4">
+                                    <label class="form-label" for="typeEmailX">Apellido</label>
+                                    <input type="text" id="typeEmailX" class="form-control form-control-lg" formControlName="apellido" />
+                                    <div class="text-danger">
+                                        <span>El Apellido <strong>es obligatorio</strong></span>
+                                    </div>
+                                </div>
+                                <div class="form-outline form mb-4">
+                                    <label class="form-label" for="typeEmailX">Email</label>
+                                    <input type="email" id="typeEmailX" class="form-control form-control-lg" formControlName="email" />
+                                    <div class="text-danger">
+                                        <span>El Email <strong>es obligatorio</strong></span>
+                                    </div>
+                                </div>
+
+                                <!-- seccion carreras -->
+                                <div class="form-outline form mb-4">
+                                    <label class="form-label" for="typeEmailX">Carrera</label>
+                                    <select name="carrera" class="form-control form-control-lg">
+                                        <option value="">Software</option>
+                                        <option value="">Enfernmeria</option>
+                                        <option value="">Matematica</option>
+                                        <option value="">Maestria</option>
+                                    </select>
+                                    <!-- <div class="text-danger" *ngIf="Imesas.get('carrera')?.hasError('required') 
+                                    && Imesas.get('Tusuario')?.touched">
+                                        <span>Seleccione su <strong>Tipo de Usuario</strong></span>
+                                    </div>   -->
+                                </div>
+
+                                <!-- Seccion tablas -->
+                                <div class="container border-solid-red">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="checkbox" class=" justify-content-end">
+                                            <label for="">Practica Profecionalizante 3</label>
+
+                                        </div>
+                                        <div class="col">
+                                            Column
+                                        </div>
+                                        <div class="col">
+                                            Column
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-outline-success btn-lg px-5" type="submit">Registrar</button>
+                            </form>
+
+                            <!-- [disabled]="registro.invalid -->
+
+
+
+
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
