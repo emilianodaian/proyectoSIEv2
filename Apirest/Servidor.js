@@ -1,6 +1,7 @@
 const expres = require('express');
 const mysql = require('mysql');
 const myconn = require('express-myconnection')
+const cors = require('cors')
 
 // Rutas para los http
 const persona = require('./rutas')
@@ -25,6 +26,7 @@ const dboption = {
 const app = expres();
 app.use(myconn(mysql, dboption, 'single'))
 app.use(expres.json())
+app.use(cors())
 
 
 

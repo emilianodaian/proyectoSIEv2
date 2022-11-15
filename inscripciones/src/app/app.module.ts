@@ -7,12 +7,21 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 // Notificaciones flotantes
 import	{ToastrModule} from 'ngx-toastr';
+import{BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 // Componentes creados
 import { InscripcionFormComponent } from './Componentes/inscripcion-form/inscripcion-form.component';
 import { CarreraFormComponent } from './Componentes/carrera-form/carrera-form.component';
 // Para formularios
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+
+import { RegistroMesasService,per } from './Service/registro-mesas.service';
+ import{CondicionSer, condicionper } from './Service/CondicionSer';
+import { Ll, Llamado } from './Service/llamado';
+import { Tusuario, tusuarioServi } from './Service/tusuarioServi';
+
+
 
 @NgModule({
   declarations: [
@@ -24,10 +33,23 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
-    // ToastrModule.forRoot()
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+   
+
   ],
-  providers: [],
+  providers: [
+    condicionper,
+    Ll,
+    InscripcionFormComponent,
+    RegistroMesasService,
+    Llamado,
+    CondicionSer,
+    tusuarioServi,
+    Tusuario
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

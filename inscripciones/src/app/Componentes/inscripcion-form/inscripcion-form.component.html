@@ -11,69 +11,98 @@
                             <form [formGroup]="Mesas" (ngSubmit)="Imesas()">
                                 <div class="form-outline form-white mb-4">
                                     <label class="form-label" for="typeEmailX">Cuil</label>
-                                    <input type="text" id="typeEmailX" class="form-control form-control-lg" formControlName="cuil" />
-                                    <div class="text-danger">
+                                    <input type="number" id="ccX" class="form-control form-control-lg" formControlName="cuil" />
+                                    <div class="text-danger" *ngIf="Mesas.get('cuil')?.hasError('required') && Mesas.get('cuil')?.touched">
+
                                         <span>El cuil <strong>es obligatorio</strong></span>
                                     </div>
+                                    <div class="text-danger" *ngIf="Mesas.get('cuil')?.touched">
+
+                                        <input type="checkbox" *ngIf="Mesas.get('cuil')?.touched">
+                                        <label for="">Validar Cuil</label>
+                                    </div>
                                 </div>
-                                <div class="form-outline form-white mb-4">
-                                    <label class="form-label" for="typeEmailX">Nombre</label>
-                                    <input type="text" id="typeEmailX" class="form-control form-control-lg" formControlName="nombre" />
-                                    <div class="text-danger">
+                                <div class=" form-outline form-white mb-4 ">
+                                    <label class="form-label " for="typeEmailX ">Nombre</label>
+                                    <input type="text " id="typeEmailX " class="form-control form-control-lg " formControlName="nombre" />
+                                    <div class="text-danger" *ngIf="Mesas.get('nombre')?.hasError('required') && Mesas.get('nombre')?.touched">
                                         <span>El Nombre <strong>es obligatorio</strong></span>
                                     </div>
                                 </div>
-                                <div class="form-outline form mb-4">
-                                    <label class="form-label" for="typeEmailX">Apellido</label>
-                                    <input type="text" id="typeEmailX" class="form-control form-control-lg" formControlName="apellido" />
-                                    <div class="text-danger">
+                                <div class="form-outline form mb-4 ">
+                                    <label class="form-label " for="typeEmailX ">Apellido</label>
+                                    <input type="text " id="typeEmailX " class="form-control form-control-lg " formControlName="apellido" />
+                                    <div class="text-danger " *ngIf="Mesas.get('apellido')?.hasError('required') && Mesas.get('apellido')?.touched">
                                         <span>El Apellido <strong>es obligatorio</strong></span>
                                     </div>
                                 </div>
-                                <div class="form-outline form mb-4">
-                                    <label class="form-label" for="typeEmailX">Email</label>
-                                    <input type="email" id="typeEmailX" class="form-control form-control-lg" formControlName="email" />
-                                    <div class="text-danger">
+                                <div class="form-outline form mb-4 ">
+                                    <label class="form-label " for="typeEmailX ">Email</label>
+                                    <input type="email " id="typeEmailX " class="form-control form-control-lg " formControlName="email" />
+                                    <div class="text-danger " *ngIf="Mesas.get('email')?.hasError('required') && Mesas.get('email')?.touched">
                                         <span>El Email <strong>es obligatorio</strong></span>
+                                    </div>
+                                </div>
+                                <div class="form-outline form mb-4 ">
+                                    <label class="form-label " for="typeEmailX ">Tipo de usuario</label>
+                                    <select class="form-control form-control-lg " formControlName="tusuario">
+                                        <option></option>
+                                    </select>
+                                    <div class="text-danger " *ngIf="Mesas.get('tusuario')?.hasError('required') && Mesas.get('tusuario')?.touched">
+                                        <span>El Tipo de Usuario <strong>es obligatorio</strong></span>
                                     </div>
                                 </div>
 
                                 <!-- seccion carreras -->
-                                <div class="form-outline form mb-4">
-                                    <label class="form-label" for="typeEmailX">Carrera</label>
-                                    <select name="carrera" class="form-control form-control-lg">
-                                        <option value="">Software</option>
-                                        <option value="">Enfernmeria</option>
-                                        <option value="">Matematica</option>
-                                        <option value="">Maestria</option>
+                                <div class="form-outline form mb-4 ">
+                                    <label class="form-label " for="typeEmailX ">Carrera</label>
+                                    <select class="form-control form-control-lg " formControlName="carrera">
+                                        <option value=" ">Software</option>
+                                        <option value=" ">Enfernmeria</option>
+                                        <option value=" ">Matematica</option>
+                                        <option value=" ">Maestria</option>
                                     </select>
-                                    <!-- <div class="text-danger" *ngIf="Imesas.get('carrera')?.hasError('required') 
-                                    && Imesas.get('Tusuario')?.touched">
-                                        <span>Seleccione su <strong>Tipo de Usuario</strong></span>
-                                    </div>   -->
-                                </div>
-
-                                <!-- Seccion tablas -->
-                                <div class="container border-solid-red">
-                                    <div class="row">
-                                        <div class="col">
-                                            <input type="checkbox" class=" justify-content-end">
-                                            <label for="">Practica Profecionalizante 3</label>
-
-                                        </div>
-                                        <div class="col">
-                                            Column
-                                        </div>
-                                        <div class="col">
-                                            Column
-                                        </div>
+                                    <div class="text-danger " *ngIf="Mesas.get( 'carrera')?.hasError( 'required') && Mesas.get( 'carrera')?.touched ">
+                                        <span>Seleccione su <strong>Carrera</strong></span>
                                     </div>
                                 </div>
 
-                                <button class="btn btn-outline-success btn-lg px-5" type="submit">Registrar</button>
+                                <!-- Seccion tablas -->
+                                <table class="table " style="border-radius: 1rem; ">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col ">Materia</th>
+                                            <th scope="col ">Condición</th>
+                                            <th scope="col ">Llamado</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody style="color: white ; ">
+                                        <tr *ngFor="let materias of listarmaterias">
+                                            <td scope="row">
+                                                <input type="checkbox " class="checkbox float-start" formControlName="materia">
+                                                <label for=" "></label>
+                                            </td>
+                                            <td scope="row ">
+                                                <select>
+                                                    <option value=" " *ngFor="let condicion of  " formControlName="condicion">{{condicion}}</option>
+                                                    
+                                                   </select>
+                                            </td>
+                                            <td scope="row ">
+                                                <select formControlName="Llamado">
+                                                    <option *ngFor="let Ll of Llamadobd"
+                                                     value=" " formControlName="llamado" > {{Ll}} </option>
+                                                 </select>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <button class="btn btn-outline-success btn-lg px-5 " type="submit ">Registrar</button>
                             </form>
 
-                            <!-- [disabled]="registro.invalid -->
+
 
 
 

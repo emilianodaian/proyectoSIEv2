@@ -6,7 +6,8 @@ import { InscripcionFormComponent } from './Componentes/inscripcion-form/inscrip
 
 const routes: Routes = [
 {path:'',component:InscripcionFormComponent},
-{path:'carrera', component:CarreraFormComponent}
+{path:'carrera', component:CarreraFormComponent},
+{path:'**', redirectTo:'', pathMatch:'full'}
 ];
 
 
