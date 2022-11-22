@@ -11,7 +11,7 @@
                             <form [formGroup]="Mesas" (ngSubmit)="Imesas()">
                                 <div class="form-outline form-white mb-4">
                                     <label class="form-label" for="typeEmailX">Cuil</label>
-                                    <input type="number" id="ccX" class="form-control form-control-lg" formControlName="cuil" />
+                                    <input type="number" id="ccX" class="form-control form-control-lg" formControlName="cuil" maxlength="11" />
                                     <div class="text-danger" *ngIf="Mesas.get('cuil')?.hasError('required') && Mesas.get('cuil')?.touched">
 
                                         <span>El cuil <strong>es obligatorio</strong></span>
@@ -39,18 +39,19 @@
                                 <div class="form-outline form mb-4 ">
                                     <label class="form-label " for="typeEmailX ">Email</label>
                                     <input type="email " id="typeEmailX " class="form-control form-control-lg " formControlName="email" />
-                                    <div class="text-danger " *ngIf="Mesas.get('email')?.hasError('required') && Mesas.get('email')?.touched">
+                                    <div class="text-danger " *ngIf="Mesas.get('email')?.hasError('email') && Mesas.get('email')?.touched">
                                         <span>El Email <strong>es obligatorio</strong></span>
                                     </div>
                                 </div>
                                 <div class="form-outline form mb-4 ">
                                     <label class="form-label " for="typeEmailX ">Tipo de usuario</label>
-                                    <select class="form-control form-control-lg " formControlName="tusuario">
-                                        <option></option>
-                                    </select>
-                                    <div class="text-danger " *ngIf="Mesas.get('tusuario')?.hasError('required') && Mesas.get('tusuario')?.touched">
+                                    <select formControlName="tipodeusuario">
+                                        <option *ngFor="let tipodeusuario of tususelect "
+                                         value=" "  > {{tipodeusuario.tusuario}} </option>
+                                     </select>
+                                    <!-- <div class="text-danger " *ngIf="Mesas.get('tusuario')?.hasError('required') && Mesas.get('tusuario')?.touched">
                                         <span>El Tipo de Usuario <strong>es obligatorio</strong></span>
-                                    </div>
+                                    </div> -->
                                 </div>
 
                                 <!-- seccion carreras -->
@@ -62,9 +63,9 @@
                                         <option value=" ">Matematica</option>
                                         <option value=" ">Maestria</option>
                                     </select>
-                                    <div class="text-danger " *ngIf="Mesas.get( 'carrera')?.hasError( 'required') && Mesas.get( 'carrera')?.touched ">
+                                    <!-- <div class="text-danger " *ngIf="Mesas.get( 'carrera')?.hasError( 'required') && Mesas.get( 'carrera')?.touched ">
                                         <span>Seleccione su <strong>Carrera</strong></span>
-                                    </div>
+                                    </div> -->
                                 </div>
 
                                 <!-- Seccion tablas -->
@@ -78,28 +79,28 @@
 
                                     </thead>
                                     <tbody style="color: white ; ">
-                                        <tr *ngFor="let materias of listarmaterias">
-                                            <td scope="row">
-                                                <input type="checkbox " class="checkbox float-start" formControlName="materia">
-                                                <label for=" "></label>
+                                        <tr scope="row" formControlName="Listmaterias" *ngFor=" let Listmaterias of Arraymaterias">
+                                            <td> {{Listmaterias.Materias}}
+                                                <input type="checkbox" class="checkbox float-start">
                                             </td>
                                             <td scope="row ">
-                                                <select>
-                                                    <option value=" " *ngFor="let condicion of  " formControlName="condicion">{{condicion}}</option>
+                                                <select formControlName="condicionselec">
+                                                    <option  formControlName="Condper" *ngFor=" let condicionselec of condicionEst">
+                                                        {{condicionselec.Condicion}}</option>
                                                     
-                                                   </select>
+                                                </select>
                                             </td>
                                             <td scope="row ">
-                                                <select formControlName="Llamado">
-                                                    <option *ngFor="let Ll of Llamadobd"
-                                                     value=" " formControlName="llamado" > {{Ll}} </option>
+                                                <select formControlName="Llamadoselc">
+                                                    <option *ngFor="let Llamadoselc of Llamadobd"
+                                                     value=" " formControlName="llamado" > {{Llamadoselc.LlamadoMateria}} </option>
                                                  </select>
                                             </td>
                                         </tr>
 
                                     </tbody>
                                 </table>
-                                <button class="btn btn-outline-success btn-lg px-5 " type="submit ">Registrar</button>
+                                <button class="btn btn-outline-success btn-lg px-5 " [disabled]="!Mesas.valid" type="submit">Registrar</button>
                             </form>
 
 

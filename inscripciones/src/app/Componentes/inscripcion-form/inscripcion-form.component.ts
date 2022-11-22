@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import{Router} from '@angular/router';
 
 // Formularios
-import{ FormBuilder, FormGroup, Validators} from '@angular/forms';
+import{ AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, NonNullableFormBuilder, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 // Inscripciones
 import { per, RegistroMesasService } from 'src/app/Service/registro-mesas.service';
@@ -11,11 +11,17 @@ import { per, RegistroMesasService } from 'src/app/Service/registro-mesas.servic
 
 // Llamados Mesas
 
-import { Llamado, Ll} from 'src/app/Service/llamado';
+import { Llamado} from 'src/app/Service/llamado';
 // Condicion
-import { condicionper } from 'src/app/Service/CondicionSer';
+import { condicionper, CondicionSer } from 'src/app/Service/CondicionSer';
 // tipo de usaurio
 import { Tusuario, tusuarioServi } from 'src/app/Service/tusuarioServi';
+// Materias
+import { materiaModel, Materias} from 'src/app/Service/Materias';
+import { llama } from 'src/app/Models/llamadomaterias';
+import { tusuarios } from 'src/app/Models/tususarios';
+import {Unidadcurricular}from '../../Models/materias'
+import { CondicionEstudiante } from '../../Models/condicion'
 
 
 
@@ -30,8 +36,10 @@ import { Tusuario, tusuarioServi } from 'src/app/Service/tusuarioServi';
 export class InscripcionFormComponent implements OnInit {
   listacarreras: []=[];
   listarmaterias:[]=[];
-  condicion:condicionper[]=[];
-  Llamadobd:Ll[]=[]
+  condicionEst:CondicionEstudiante[]=[];
+  Llamadobd:llama[]=[];
+  tususelect:tusuarios[]=[];
+  Arraymaterias:Unidadcurricular[]=[]
 
  
   
@@ -45,22 +53,29 @@ export class InscripcionFormComponent implements OnInit {
      private RMservis:RegistroMesasService,
      private tuservis:tusuarioServi,
      private LLamadoservis:Llamado,
+     private materiasServis:Materias,
+    
  // Condicion
-      private cond:condicionper,
+      private cond:CondicionSer,
  //  Navegador y animaciones
       private router:Router, private toastr: ToastrService,
+    
+      
 ) { 
 
        this.Mesas=this.fb.group({
-      cuil:['',Validators.required],
+      cuil:['',Validators.compose([Validators.maxLength(11), Validators.required])],
       nombre:['',Validators.required],
       apellido:['',Validators.required],
-      email:['',Validators.required],
-      Tusuario:['',Validators.required],
-      carrera:['',Validators.required],
-      materia:['',Validators.required],
-      condicion:['',Validators.required],
-      llamado:['',Validators.required]})
+      email:['',Validators.compose([Validators.email, Validators.required])],
+      // Tusuario:['',Validators.required],
+      // carrera:['',Validators.required],
+      // materia:['',Validators.required],
+      // condicion:['',Validators.required],
+      // Llamadoselc:['',Validators.required]
+    })
+
+      
   }
 
   ngOnInit(): void {
@@ -68,8 +83,28 @@ export class InscripcionFormComponent implements OnInit {
     this.LLamadoservis.getlla().subscribe(data=>{
       this.Llamadobd=data
     })
+
+    this.tuservis.getusu().subscribe(data =>{
+      this.tususelect=data;
+    })
+  
+    this.materiasServis.getmaterias().subscribe(data =>{
+      this.Arraymaterias=data;
+    })
+    this.cond.getcon().subscribe(data =>{
+      this.condicionEst=data;
+    })
+
+
+
+
     
   }
+
+
+
+
+
  
 
 
@@ -86,14 +121,14 @@ export class InscripcionFormComponent implements OnInit {
     };
     console.log(Persona);
  //  envio de datos
-   this.RMservis.addinscr(Persona).subscribe(data => {
+  //  this.RMservis.addinscr(Persona).subscribe(data => {
          
-        // mensaje animado
-        this.toastr.success('Inscripcion Registrada', 'Tu registro fue Exitoso!');
-        },error=>{
-                      console.log(error);
-                     this.Mesas.reset();
-                     })
+  //       // mensaje animado
+  //       this.toastr.success('Inscripcion Registrada', 'Tu registro fue Exitoso!');
+  //       },error=>{
+  //                     console.log(error);
+                     
+  //                    })
 
                      //  ----------------------------------------------------------------------------------------
 // tipo de usuario
@@ -103,7 +138,11 @@ const tipousario:Tusuario={
 
   // ---------------------------------------------------------------------------------------
   // Materias
- 
+ const Materias:materiaModel={
+  Materiass:this.Mesas.get('materias')?.value
+ }
+
+
 
   // ---------------------------------------------------------------------------------------
   // Condicion
@@ -114,8 +153,16 @@ const tipousario:Tusuario={
   // ---------------------------------------------------------------------------------------
 
     
-    
+ 
+  
+ 
+
+
+
+
   }
+
+ 
 
   
 }

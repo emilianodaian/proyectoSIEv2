@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs';
+import { tusuarios } from '../Models/tususarios';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ export class tusuarioServi  {
   constructor(private http: HttpClient) {}
    //  Get Usuario
    getusu():Observable<any>{
-    return this.http.get(this.url);
+    return this.http.get<tusuarios[]>(this.url);
    };
  
  

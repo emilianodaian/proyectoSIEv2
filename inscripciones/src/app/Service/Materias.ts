@@ -11,7 +11,7 @@ export class Materias {
 
   constructor(private http: HttpClient) {}
    //  Get Materias
-   getlla():Observable<any>{
+   getmaterias():Observable<any>{
     return this.http.get(this.url);
    };
  
@@ -20,6 +20,6 @@ export class Materias {
    
 }
 
-export class materia{
- Materias?:string;
-}
+export class materiaModel{
+ Materiass?:string;
+}  

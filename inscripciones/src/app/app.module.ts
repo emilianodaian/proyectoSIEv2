@@ -16,10 +16,13 @@ import { CarreraFormComponent } from './Componentes/carrera-form/carrera-form.co
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
-import { RegistroMesasService,per } from './Service/registro-mesas.service';
+import { RegistroMesasService, } from './Service/registro-mesas.service';
  import{CondicionSer, condicionper } from './Service/CondicionSer';
 import { Ll, Llamado } from './Service/llamado';
 import { Tusuario, tusuarioServi } from './Service/tusuarioServi';
+import { materiaModel, Materias } from './Service/Materias';
+
+
 
 
 
@@ -37,6 +40,7 @@ import { Tusuario, tusuarioServi } from './Service/tusuarioServi';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    
    
 
   ],
@@ -48,7 +52,13 @@ import { Tusuario, tusuarioServi } from './Service/tusuarioServi';
     Llamado,
     CondicionSer,
     tusuarioServi,
-    Tusuario
+    Tusuario,
+    Materias,
+    materiaModel,
+    
+    
+
+    
   ],
   bootstrap: [AppComponent]
 })

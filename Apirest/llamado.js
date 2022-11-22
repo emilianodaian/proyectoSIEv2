@@ -16,6 +16,18 @@ llamado.get('/', (req, res) => {
 
 })
 
+// Obtener uno
+// llamado.get('/:id', (req, res) => {
+//     req.getConnection((err, conn) => {
+//         if (err) return res.send(err)
+//         conn.query('SELECT * FROM llamado WHERE Id-Llamado =? ', [req.params.id], (error, rows) => {
+//             if (error) throw error
+//             else {
+//                 res.json(rows)
+//             }
+//         })
+//     });
+// });
 // Mandar
 llamado.post('/', (req, res) => {
     req.getConnection((err, conn) => {
@@ -32,7 +44,7 @@ llamado.post('/', (req, res) => {
 llamado.delete('/:id', (req, res) => {
         req.getConnection((err, conn) => {
             if (err) return res.send(err)
-            conn.query('DELETE FROM llamados WHERE Id-Llamado = ?', [req.params.id], (err, rows) => {
+            conn.query('DELETE FROM llamado WHERE Id-Llamado = ?', [req.params.id], (err, rows) => {
                 if (err) return res.send(err)
                 res.send('Eliminado')
             })
@@ -43,7 +55,7 @@ llamado.delete('/:id', (req, res) => {
 llamado.put('/:id', (req, res) => {
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
-        conn.query('UPDATE llamados set ? WHERE Id-Llamado = ?', [req.body, req.params.id], (err, rows) => {
+        conn.query('UPDATE llamado set ? WHERE Id-Llamado = ?', [req.body, req.params.id], (err, rows) => {
             if (err) return res.send(err)
             res.send('Actualizado')
         })

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { inscripciones } from '../Models/Inscripciones';
 
@@ -8,6 +8,8 @@ import { inscripciones } from '../Models/Inscripciones';
 })
 export class RegistroMesasService {
   url='http://localhost:2000/api/';
+  
+  
 
   constructor(private http: HttpClient) {}
    //  Get Usuario
@@ -20,8 +22,15 @@ export class RegistroMesasService {
  }
  
  // Modificar
- editConsul(id:string, Carrera:inscripciones){
-   return this.http.put(this.url+'/'+id,Carrera)
+ editConsul(cuil:per):Observable<any>{
+   return this.http.get(this.url)
+   
+ }
+
+ 
+  
+ chechcuil(cui:string){
+  
  }
  
    

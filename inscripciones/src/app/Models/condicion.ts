@@ -1,10 +1,7 @@
-export class condicion{
+export interface CondicionEstudiante{
+    id:number;
     Condicion: string;
     
 
-    constructor(Condicion:string){ 
-       
-        this.Condicion= Condicion;
-        
-    }
+   
 }
